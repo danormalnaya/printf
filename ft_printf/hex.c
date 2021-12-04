@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   hex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/28 17:57:08 by lloko             #+#    #+#             */
-/*   Updated: 2021/12/04 20:35:27 by lloko            ###   ########.fr       */
+/*   Created: 2021/12/04 16:15:41 by lloko             #+#    #+#             */
+/*   Updated: 2021/12/04 19:45:23 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-#include <stdarg.h>
-#include <stdlib.h>
 #include <unistd.h>
 
-int		print_char(char c);
-int		print_string(char *str);
-size_t	ft_strlen(const char *s);
-char	*ft_itoa(int n);
-int		print_base10_int(int n);
-char	*ft_utoa(unsigned int n);
-int		print_unsigned_int(unsigned int n);
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}
 
-#endif
+int	ft_print_pointer(unsigned long n, char *base)
+{
+	int	count;
+
+	count = 0;
+	if (n >= 16)
+		count = ft_print_pointer(n / 16, base);
+	count++;
+	ft_putchar(base[n % 16]);
+	n /= 16;
+	return (count);
+}
+
+/* #include <stdio.h>
+int main()
+{
+	int a;
+	a = ft_print_pointer(17, "01234567890abcdef");
+	printf("%X\n", a);
+	//printf("%x\n", a);
+} */
