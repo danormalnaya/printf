@@ -6,11 +6,23 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 20:23:12 by lloko             #+#    #+#             */
-/*   Updated: 2021/12/04 20:33:39 by lloko            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:18:15 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	a;
+
+	a = 0;
+	while (s[a] != '\0')
+	{
+		a++;
+	}
+	return (a);
+}
 
 static size_t	ft_length(unsigned int a)
 {
@@ -66,4 +78,16 @@ char	*ft_utoa(unsigned int n)
 	new[len] = '\0';
 	ft_rev(new);
 	return (new);
+}
+
+int	print_unsigned_int(unsigned int n)
+{
+	int		len;
+	char	*rez_utoa;
+
+	rez_utoa = ft_utoa(n);
+	len = ft_strlen(rez_utoa);
+	write(1, rez_utoa, len);
+	free(rez_utoa);
+	return (len);
 }

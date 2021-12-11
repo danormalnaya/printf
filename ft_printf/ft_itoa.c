@@ -6,23 +6,11 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 20:06:29 by lloko             #+#    #+#             */
-/*   Updated: 2021/12/04 20:07:17 by lloko            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:17:46 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	a;
-
-	a = 0;
-	while (s[a] != '\0')
-	{
-		a++;
-	}
-	return (a);
-}
 
 static size_t	ft_length(int a)
 {
@@ -87,4 +75,16 @@ char	*ft_itoa(int n)
 	new[len] = '\0';
 	ft_rev(new);
 	return (new);
+}
+
+int	print_base10_int(int n)
+{
+	int		len;
+	char	*rez_itoa;
+
+	rez_itoa = ft_itoa(n);
+	len = ft_strlen(rez_itoa);
+	write(1, rez_itoa, len);
+	free(rez_itoa);
+	return (len);
 }
